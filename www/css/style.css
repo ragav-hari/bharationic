@@ -1,0 +1,24 @@
+/* Empty. Add your own CSS if you like */
+
+.welcome
+{
+  text-align: center;
+  text-transform: uppercase;    
+}
+
+
+.starter_shop_icon
+{
+  width:60%;
+  height:auto;
+  margin: 0 auto;    
+  display: block;
+}
+
+.upload_modal
+{
+ width:80%;
+ height:auto;
+ padding: 20px;    
+ margin: 0 auto;
+}

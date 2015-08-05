@@ -1,0 +1,13 @@
+{
+    "jscodehints.detectedExclusions": [
+        "R:/bharationic/www/lib/ionic/js/ionic.min.js",
+        "R:/bharationic/www/lib/ionic/js/angular/angular-animate.js",
+        "R:/bharationic/www/lib/ionic/js/angular/angular-animate.min.js",
+        "R:/bharationic/www/lib/ionic/js/angular/angular-resource.js",
+        "R:/bharationic/platforms/android/build/intermediates/assets/debug/www/lib/ionic/js/cordova.js",
+        "R:/bharationic/gulpfile.js",
+        "R:/bharationic/platforms/android/assets/www/lib/angular/angular.js",
+        "R:/bharationic/platforms/android/assets/www/lib/angular/angular.min.js",
+        "R:/bharationic/platforms/android/assets/www/lib/angular-animate/angular-animate.js"
+    ]
+}

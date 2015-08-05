@@ -1,0 +1,59 @@
+<ion-view view-title="Upload Image">
+  <ion-content class="padding"> 
+      
+      <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="text"  ng-model="user.user_email">
+            </label>
+          
+            <label class="item item-input">
+                <span class="input-label">Mobile No</span>
+                <input type="text"  ng-model="user.user_mobile">
+            </label>
+          
+            <label class="item item-input">
+                <span class="input-label">Comment</span>
+                <textarea type="text" ng-model="user.user_comment"></textarea>
+            </label>
+          
+            <button class="button button-royal button-full button-small" ng-click="openModal()">
+                    Attach Image
+            </button>
+            
+                <div class="row"  style="flex-wrap: wrap;">
+                    <div class="col col-50" ng-repeat="imageuri in imgURI">
+                         <img style="width:100px;height:100px" ng-show="imgURI !== undefined" ng-src="{{imageuri}}">
+                         <button class="button button-assertive button-small" ng-click="removeImage($index)">Remove</button>
+                    </div>  
+                </div>    
+          
+          <button class="button button-royal button-full button-large">
+                    Submit
+            </button>
+          
+         
+    
+      
+      <script id="my-modal.html" type="text/ng-template">
+         
+          <div class="modal">
+             
+            <ion-content>
+               <button class="button button-royal button-full button-small" ng-click="selectimage()">
+                        Select Image
+                </button>
+                
+                
+      
+                <button class="button button-royal button-full button-small" ng-click="takePicture()">
+                        Capture Image
+                </button>
+                
+            </ion-content>
+          </div>
+          
+     </script>
+          
+  </ion-content>
+</ion-view>  

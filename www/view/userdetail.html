@@ -1,0 +1,29 @@
+<ion-view view-title="User Detail">
+  <ion-content class="padding">    
+  <div class="list">
+  <label class="item item-input">
+    <input type="text" placeholder="User Name" ng-model="user.user_name">
+  </label>
+  <label class="item item-input">
+    <input type="email" placeholder="Email ID" ng-model="user.user_emailid">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="Phone Number" ng-model="user.user_phoneno">
+  </label>      
+ <button class="button button-royal button-full button-small" ng-click="registeruser()">
+   Submit
+</button>
+</div>
+    </ion-content>
+    
+    <script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">My Modal title</h1>
+    </ion-header-bar>
+    <ion-content>
+      Hello!
+    </ion-content>
+  </ion-modal-view>
+</script>
+</ion-view>
