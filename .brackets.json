@@ -8,6 +8,7 @@
         "R:/bharationic/gulpfile.js",
         "R:/bharationic/platforms/android/assets/www/lib/angular/angular.js",
         "R:/bharationic/platforms/android/assets/www/lib/angular/angular.min.js",
-        "R:/bharationic/platforms/android/assets/www/lib/angular-animate/angular-animate.js"
+        "R:/bharationic/platforms/android/assets/www/lib/angular-animate/angular-animate.js",
+        "R:/bharationic/platforms/android/build/intermediates/assets/debug/www/js/controller/usersController.js"
     ]
 }

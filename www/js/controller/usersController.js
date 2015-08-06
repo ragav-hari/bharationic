@@ -1,8 +1,11 @@
 (function(){
-    bharat.controller('usersController', ['$q','$timeout','$scope','usersService','$ionicModal','$cordovaCamera', usersController]); 
+    bharat.controller('usersController', ['$q','$timeout','$scope','usersService','$ionicModal','$cordovaCamera', '$cordovaFile','$cordovaCapture',usersController]); 
     
-    function usersController($q,$timeout,$scope,usersService,$ionicModal,$cordovaCamera)
+    function usersController($q,$timeout,$scope,usersService,$ionicModal,$cordovaCamera,$cordovaFile,$cordovaCapture)
     {
+        
+       
+        
         $scope.user = {};
         $scope.imgURI = [];
         
@@ -62,22 +65,69 @@
        {   
              var cameraOptions = 
              {
-                quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL                
+                quality: 75,
+                destinationType: Camera.DestinationType.FILE_URI,
+                 sourceType: Camera.PictureSourceType.CAMERA,
+                 encodingType: Camera.EncodingType.JPEG,
+                 allowEdit: false,
              };
-            var success = function(data)
-            {
-                     $scope.$apply(function () {
+             $cordovaCamera.getPicture(cameraOptions).then(function(imageData) {
+                
+             alert("IMGDATA"+imageData);     
+            
+             onImageSuccess(imageData);
 
-                       $scope.imgURI.push("data:image/jpeg;base64," + data);
-                        console.log("Pushed");
-                     });
-             };
-            var failure = function(message){
-                 alert('Failed because: ' + message);
-            };
+             function onImageSuccess(fileURI) {
+             $scope.imgURI.push(fileURI);     
+             createFileEntry(fileURI);
+                 
+             }
 
-            navigator.camera.getPicture( success , failure , cameraOptions );      
+             function createFileEntry(fileURI) {
+                 alert("FILEURI"+fileURI);     
+             window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
+             }
+
+            
+             function copyFile(fileEntry) 
+             {
+             var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
+             var newName = makeid() + name;
+             alert("NEWFILE"+newName);        
+             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) 
+             {
+             fileEntry.copyTo(fileSystem2,newName,onCopySuccess,fail);
+                  alert("FILESYS"+cordova.file.dataDirectory);  
+             },fail);
+             }
+
+             // 6
+             function onCopySuccess(entry) {
+             $scope.$apply(function () {
+             $scope.images.push(entry.nativeURL);
+                 alert("COPYSUCCESS"+entry.nativeURL);
+             });
+             }
+
+             function fail(error) {
+             console.log("fail: " + error.code);
+                  alert("COPYFAILURE"+error);
+             }
+
+             function makeid() {
+             var text = "";
+             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+             for (var i=0; i < 5; i++) {
+             text += possible.charAt(Math.floor(Math.random() * possible.length));
+             }
+             return text;
+             }
+
+             }, function(err) {
+             console.log(err);
+             });
+                    
             $scope.modal.hide();
      };
         
@@ -85,9 +135,27 @@
      {
           $scope.imgURI.splice(index,1);
      }
+ 
+ 
+     $scope.captureAudio = function()
+     {
+          var captureSuccess = function(mediaFiles) 
+          {
+               alert("SUCCESS");
+                var i, path, len;
+                for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                    path = mediaFiles[i].fullPath;
+                }
+          };
 
-        
-        
+            var captureError = function(error) {
+                 alert("ERROR");
+                navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+            };
+         
+            navigator.device.capture.captureAudio(captureSuccess, captureError, {limit:2}); 
+     }
+ 
         
     }
     
