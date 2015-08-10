@@ -4,7 +4,23 @@ bharat.run(function($ionicPlatform, $ionicSideMenuDelegate,$cordovaCapture) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-     console.log(navigator.device.capture);
+    
+      
+   /*   var options = { limit: 3, duration: 10 };
+
+    $cordovaCapture.captureAudio(options).then(function(audioData) {
+      // Success! Audio data is here
+        console.log("CAPTURE SUCCESS");
+        alert("audio success");
+    }, function(err) {
+      // An error occurred. Show a message to the user
+         console.log("CAPTURE ERROR :",JSON.stringify(err));
+        alert("audio failure");
+    });
+     */ 
+     
+     
+       
       
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
